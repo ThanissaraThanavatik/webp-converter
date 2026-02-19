@@ -1,32 +1,46 @@
-import { THAI_TEXT } from '../../constants/thaiText';
+import { useTheme } from '../../contexts/ThemeContext';
 
 export const Header = () => {
+  const { toggleTheme, isDark } = useTheme();
+
   return (
-    <div className="text-center mb-12 animate-fade-in">
-      {/* Logo/Icon */}
-      <div className="inline-flex items-center justify-center w-20 h-20 mb-6 rounded-3xl seedream-gradient-bg shadow-lg animate-float">
-        <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
+    <header className="flex items-center justify-between">
+      <div className="flex items-center gap-3">
+        {/* Logo */}
+        <div className="w-10 h-10 bg-gradient-to-br from-[var(--accent-primary)] to-[var(--purple-primary)] rounded-lg flex items-center justify-center">
+          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </div>
+
+        <div>
+          <h1 className="text-lg font-semibold text-[var(--text-primary)]">Image Converter</h1>
+          <p className="text-xs text-[var(--text-muted)]">แปลง WebP, PNG, AVIF</p>
+        </div>
       </div>
 
-      {/* Title with gradient */}
-      <h1 className="text-5xl md:text-6xl font-bold mb-4 animate-fade-in animation-delay-100" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif' }}>
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-500">
-          {THAI_TEXT.title}
-        </span>
-      </h1>
+      <div className="flex items-center gap-2">
+        <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 bg-[var(--success-subtle)] rounded-full">
+          <span className="w-1.5 h-1.5 rounded-full bg-[var(--success)]"></span>
+          <span className="text-xs font-medium text-[var(--success)]">พร้อมใช้งาน</span>
+        </div>
 
-      {/* Subtitle */}
-      <p className="text-xl text-gray-600 max-w-2xl mx-auto animate-fade-in animation-delay-200" style={{ color: '#4B5563' }}>
-        {THAI_TEXT.subtitle}
-      </p>
-
-      {/* Badge */}
-      <div className="inline-flex items-center gap-2 mt-6 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm shadow-md animate-fade-in animation-delay-300">
-        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-        <span className="text-sm font-medium" style={{ color: '#4B5563' }}>Client-side Processing • 100% Private</span>
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-lg bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] transition-colors"
+          aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+        >
+          {isDark ? (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          ) : (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          )}
+        </button>
       </div>
-    </div>
+    </header>
   );
 };

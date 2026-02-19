@@ -1,6 +1,3 @@
-import { useRef, useState } from 'react';
-import { THAI_TEXT } from '../../constants/thaiText';
-
 export const DropZone = ({
   isDragging,
   onDragOver,
@@ -10,100 +7,60 @@ export const DropZone = ({
   error,
   clearError,
 }) => {
-  const fileInputRef = useRef(null);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleClick = () => {
-    clearError?.();
-    fileInputRef.current?.click();
-  };
-
   return (
-    <div className="mb-10 animate-fade-in animation-delay-200">
-      <div
-        className={`
-          relative overflow-hidden rounded-3xl p-12 text-center transition-all duration-300 cursor-pointer
-          ${isDragging
-            ? 'border-4 border-blue-500 bg-blue-50 scale-[1.02]'
-            : 'border-2 border-dashed border-gray-300 bg-white hover:border-blue-400 hover:shadow-xl'
-          }
-          ${isHovered && !isDragging ? 'scale-[1.01]' : ''}
-        `}
-        onDragOver={onDragOver}
-        onDragLeave={onDragLeave}
-        onDrop={onDrop}
-        onClick={handleClick}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {/* Animated background gradient */}
-        <div className="absolute inset-0 opacity-0 transition-opacity duration-300"
-             style={{
-               background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%)',
-               opacity: isDragging ? 1 : isHovered ? 0.5 : 0
-             }}
-        />
-
-        {/* Content */}
-        <div className="relative z-10">
-          {/* Icon container with gradient */}
-          <div className={`
-            inline-flex items-center justify-center w-24 h-24 mb-6 rounded-3xl transition-all duration-300
-            ${isDragging
-              ? 'seedream-gradient-bg scale-110'
-              : 'bg-gradient-to-br from-blue-100 to-purple-100'
-            }
-          `}>
-            <svg className={`w-12 h-12 transition-colors duration-300 ${isDragging ? 'text-white' : 'text-blue-600'}`}
-                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"
-                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-            </svg>
-          </div>
-
-          {/* Main text */}
-          <p className="text-2xl font-semibold mb-3 transition-colors duration-300"
-             style={{ color: isDragging ? '#2563EB' : '#1F2937' }}>
-            {THAI_TEXT.dropZone.title}
-          </p>
-
-          {/* Subtitle */}
-          <p className="text-gray-500 mb-6">{THAI_TEXT.dropZone.subtitleBatch}</p>
-
-          {/* Action buttons */}
-          <div className="flex items-center justify-center gap-4">
-            <button className="seedream-btn-primary inline-flex items-center gap-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
-              </svg>
-              {THAI_TEXT.dropZone.selectFiles}
-            </button>
-          </div>
-
-          {/* Batch hint */}
-          <p className="mt-4 text-xs" style={{ color: '#8E8E93' }}>
-            รองรับการเลือกไฟล์พร้อมกันหลายไฟล์
-          </p>
-        </div>
-
-        {/* Hidden file input */}
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/jpeg,image/jpg,image/png"
-          multiple
-          className="hidden"
-          onChange={onFileSelect}
-        />
+    <div
+      className={`
+        relative p-12 lg:p-16 text-center cursor-pointer transition-all duration-200 rounded-xl border-2 border-dashed
+        ${isDragging
+          ? 'bg-[var(--accent-subtle)] border-[var(--accent-primary)] scale-[1.01]'
+          : 'bg-[var(--bg-card)] border-[var(--border-subtle)] hover:border-[var(--accent-primary)]/50'
+        }
+      `}
+      onDragOver={onDragOver}
+      onDragLeave={onDragLeave}
+      onDrop={onDrop}
+      onClick={() => {
+        clearError?.();
+        document.querySelector('input[type="file"]')?.click();
+      }}
+    >
+      <div className={`
+        inline-flex items-center justify-center w-16 h-16 mb-4 rounded-2xl transition-all
+        ${isDragging 
+          ? 'bg-[var(--accent-primary)] text-white shadow-lg' 
+          : 'bg-[var(--bg-secondary)] text-[var(--accent-primary)]'
+        }
+      `}>
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l-3.75 3.75M12 9.75l3.75 3.75M3 17.25V6.75A2.25 2.25 0 015.25 4.5h13.5A2.25 2.25 0 0121 6.75v10.5A2.25 2.25 0 0118.75 19.5H5.25A2.25 2.25 0 013 17.25z" />
+        </svg>
       </div>
 
-      {/* Error message */}
+      <p className={`text-base lg:text-lg font-medium mb-2 ${isDragging ? 'text-[var(--accent-primary)]' : 'text-[var(--text-primary)]'}`}>
+        {isDragging ? 'วางไฟล์ที่นี่' : 'ลากไฟล์มาวาง หรือคลิกเพื่อเลือก'}
+      </p>
+
+      <p className="text-sm text-[var(--text-muted)]">
+        รองรับ JPG, PNG, WebP, AVIF • แปลงได้หลายไฟล์พร้อมกัน
+      </p>
+
+      <input
+        type="file"
+        accept="image/*"
+        multiple
+        className="hidden"
+        onChange={onFileSelect}
+      />
+
+      {/* Error Message */}
       {error && (
-        <div className="mt-4 p-4 rounded-2xl bg-red-50 border-2 border-red-200 text-red-600 text-center animate-fade-in flex items-center justify-center gap-3">
-          <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-          </svg>
-          {error}
+        <div className="mt-4 p-3 bg-[var(--error-subtle)] border border-[var(--error)]/20 rounded-lg">
+          <div className="flex items-center gap-2">
+            <svg className="w-4 h-4 text-[var(--error)]" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+            </svg>
+            <span className="text-sm text-[var(--error)]">{error}</span>
+          </div>
         </div>
       )}
     </div>

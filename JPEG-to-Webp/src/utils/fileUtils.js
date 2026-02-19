@@ -32,12 +32,12 @@ export const calculateSizeReduction = (originalSize, newSize) => {
 };
 
 /**
- * Validate if file is a JPEG/JPG image
+ * Validate if file is an image
  * @param {File} file - File to validate
- * @returns {boolean} True if valid JPEG/JPG file
+ * @returns {boolean} True if valid image file
  */
-export const isValidJPEGFile = (file) => {
-  return file.type.match(/image\/(jpeg|jpg)/i);
+export const isValidImageFile = (file) => {
+  return file.type.startsWith('image/');
 };
 
 /**

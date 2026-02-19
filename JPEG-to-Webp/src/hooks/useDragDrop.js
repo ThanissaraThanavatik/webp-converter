@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
-import { isValidJPEGFile } from '../utils/fileUtils';
+import { isValidImageFile } from '../utils/fileUtils';
+import { THAI_TEXT } from '../constants/thaiText';
 
 export const useDragDrop = (onFileDrop, acceptMultiple = false) => {
   const [isDragging, setIsDragging] = useState(false);
@@ -28,11 +29,11 @@ export const useDragDrop = (onFileDrop, acceptMultiple = false) => {
         if (acceptMultiple) {
           // Filter valid files
           const validFiles = files.filter((file) =>
-            file.type.match(/image\/(jpeg|jpg|png)/i)
+            file.type.startsWith('image/')
           );
 
           if (validFiles.length === 0) {
-            setError('กรุณาเลือกไฟล์ JPEG, JPG หรือ PNG เท่านั้น');
+            setError(THAI_TEXT.dropZone.error);
             return;
           }
 
@@ -43,8 +44,8 @@ export const useDragDrop = (onFileDrop, acceptMultiple = false) => {
         } else {
           const file = files[0];
 
-          if (!file.type.match(/image\/(jpeg|jpg|png)/i)) {
-            setError('กรุณาเลือกไฟล์ JPEG, JPG หรือ PNG เท่านั้น');
+          if (!file.type.startsWith('image/')) {
+            setError(THAI_TEXT.dropZone.error);
             return;
           }
 
@@ -64,11 +65,11 @@ export const useDragDrop = (onFileDrop, acceptMultiple = false) => {
       if (files.length > 0) {
         if (acceptMultiple) {
           const validFiles = files.filter((file) =>
-            file.type.match(/image\/(jpeg|jpg|png)/i)
+            file.type.startsWith('image/')
           );
 
           if (validFiles.length === 0) {
-            setError('กรุณาเลือกไฟล์ JPEG, JPG หรือ PNG เท่านั้น');
+            setError(THAI_TEXT.dropZone.error);
             return;
           }
 
@@ -79,8 +80,8 @@ export const useDragDrop = (onFileDrop, acceptMultiple = false) => {
         } else {
           const file = files[0];
 
-          if (!file.type.match(/image\/(jpeg|jpg|png)/i)) {
-            setError('กรุณาเลือกไฟล์ JPEG, JPG หรือ PNG เท่านั้น');
+          if (!file.type.startsWith('image/')) {
+            setError(THAI_TEXT.dropZone.error);
             return;
           }
 
