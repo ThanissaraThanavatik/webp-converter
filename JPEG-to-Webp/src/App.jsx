@@ -115,7 +115,7 @@ function App() {
 
       {/* ── Header ─────────────────────────────────────── */}
       <header className="shrink-0 bg-[var(--bg-card)] border-b border-[var(--border-subtle)] relative z-10">
-        <div className="max-w-[1440px] mx-auto px-5 lg:px-8 py-3">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-5 lg:px-8 py-2.5 sm:py-3">
           <Header />
         </div>
       </header>
@@ -124,9 +124,12 @@ function App() {
       <div className="flex-1 min-h-0 overflow-hidden flex">
         <div className="w-full max-w-[1440px] mx-auto flex min-h-0 overflow-hidden">
 
-          {/* ── Left — scrollable content ── */}
-          <div className="flex-1 min-w-0 overflow-y-auto custom-scrollbar">
-            <div className="px-5 lg:px-8 py-6 flex flex-col gap-5 min-h-full">
+          {/* ── Left — scrollable content + sticky mobile bar ── */}
+          <div className="flex-1 min-w-0 flex flex-col min-h-0">
+
+            {/* Scrollable area */}
+            <div className="flex-1 overflow-y-auto custom-scrollbar">
+              <div className="px-4 sm:px-5 lg:px-8 py-4 sm:py-6 flex flex-col gap-4 sm:gap-5 min-h-full">
 
               {/* Drop zone */}
               <section className="animate-slide-up shrink-0">
@@ -154,10 +157,10 @@ function App() {
                 </section>
               )}
 
-              {/* Mobile-only inline settings */}
+              {/* Mobile-only inline settings (format + quality only, no convert button) */}
               {images.length > 0 && (
-                <div className="lg:hidden card p-5 animate-slide-up delay-100 shrink-0">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[var(--text-muted)] mb-4">
+                <div className="lg:hidden card p-4 sm:p-5 animate-slide-up delay-100 shrink-0">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[var(--text-muted)] mb-3 sm:mb-4">
                     การตั้งค่า
                   </p>
                   <CompactSettings
@@ -168,6 +171,7 @@ function App() {
                     onConvert={handleConvert}
                     isConverting={isConverting}
                     imageCount={images.length}
+                    showConvert={false}
                   />
                 </div>
               )}
@@ -208,14 +212,57 @@ function App() {
               )}
 
               {/* Footer */}
-              <footer className="mt-auto pt-5 border-t border-[var(--border-subtle)] shrink-0">
-                <div className="flex items-center justify-between text-xs text-[var(--text-muted)]">
-                  <span>Client-side processing · Files never leave your device</span>
+              <footer className="mt-auto pt-4 sm:pt-5 border-t border-[var(--border-subtle)] shrink-0">
+                <div className="flex items-center justify-between flex-wrap gap-y-1 text-xs text-[var(--text-muted)]">
+                  <span>Client-side processing · ไฟล์ไม่ถูกอัปโหลดไปไหน</span>
                   <span className="font-mono">v1.0</span>
                 </div>
               </footer>
             </div>
-          </div>
+            </div>{/* /scrollable */}
+
+            {/* ── Mobile sticky bottom action bar ── */}
+            {images.length > 0 && (
+              <div className="lg:hidden shrink-0 border-t border-[var(--border-subtle)] bg-[var(--bg-card)]/95 backdrop-blur-sm px-4 py-3 animate-slide-up">
+                <div className="flex gap-2">
+                  <button
+                    onClick={handleConvert}
+                    disabled={isConverting}
+                    className="flex-1 btn-primary py-3 text-sm"
+                  >
+                    {isConverting ? (
+                      <>
+                        <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        กำลังแปลง...
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                        {images.length > 1 ? `แปลง ${images.length} ไฟล์` : 'แปลงไฟล์'}
+                      </>
+                    )}
+                  </button>
+
+                  {convertedCount > 0 && (
+                    <button
+                      onClick={handleDownloadAll}
+                      className="btn-secondary py-3 px-4 shrink-0"
+                      title="ดาวน์โหลดทั้งหมด"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      </svg>
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>{/* /left flex-col wrapper */}
 
           {/* ── Right — sticky settings sidebar ── */}
           <aside className="hidden lg:flex flex-col w-72 xl:w-80 shrink-0 border-l border-[var(--border-subtle)] overflow-y-auto custom-scrollbar bg-[var(--bg-card)]">

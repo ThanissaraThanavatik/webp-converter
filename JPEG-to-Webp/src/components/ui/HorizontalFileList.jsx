@@ -9,8 +9,8 @@ export const HorizontalFileList = ({ images, onRemove, onDownload, onDownloadAll
   return (
     <div className="space-y-3">
       {/* Header Stats */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between flex-wrap gap-y-1.5">
+        <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
           <span className="text-sm text-[var(--text-muted)]">
             <span className="font-semibold text-[var(--text-primary)]">{images.length}</span> ไฟล์
           </span>
@@ -19,8 +19,8 @@ export const HorizontalFileList = ({ images, onRemove, onDownload, onDownloadAll
               แปลงแล้ว {convertedCount}
             </span>
           )}
-          <div className="h-4 w-px bg-[var(--border-subtle)]"></div>
-          <button 
+          <div className="h-4 w-px bg-[var(--border-subtle)] hidden sm:block"></div>
+          <button
             onClick={onClearAll}
             className="text-xs text-[var(--text-muted)] hover:text-[var(--error)] transition-colors"
           >
@@ -29,7 +29,7 @@ export const HorizontalFileList = ({ images, onRemove, onDownload, onDownloadAll
         </div>
 
         {convertedCount > 0 && (
-          <button 
+          <button
             onClick={onDownloadAll}
             className="text-xs font-medium text-[var(--accent-primary)] hover:underline"
           >

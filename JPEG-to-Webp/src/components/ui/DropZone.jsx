@@ -10,7 +10,7 @@ export const DropZone = ({
   return (
     <div
       className={`
-        relative p-12 lg:p-16 text-center cursor-pointer transition-all duration-200 rounded-xl border-2 border-dashed
+        relative p-6 sm:p-10 lg:p-16 text-center cursor-pointer transition-all duration-200 rounded-xl border-2 border-dashed
         ${isDragging
           ? 'bg-[var(--accent-subtle)] border-[var(--accent-primary)] scale-[1.01]'
           : 'bg-[var(--bg-card)] border-[var(--border-subtle)] hover:border-[var(--accent-primary)]/50'
@@ -25,13 +25,13 @@ export const DropZone = ({
       }}
     >
       <div className={`
-        inline-flex items-center justify-center w-16 h-16 mb-4 rounded-2xl transition-all
-        ${isDragging 
-          ? 'bg-[var(--accent-primary)] text-white shadow-lg' 
+        inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 mb-3 sm:mb-4 rounded-xl sm:rounded-2xl transition-all
+        ${isDragging
+          ? 'bg-[var(--accent-primary)] text-white shadow-lg'
           : 'bg-[var(--bg-secondary)] text-[var(--accent-primary)]'
         }
       `}>
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+        <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l-3.75 3.75M12 9.75l3.75 3.75M3 17.25V6.75A2.25 2.25 0 015.25 4.5h13.5A2.25 2.25 0 0121 6.75v10.5A2.25 2.25 0 0118.75 19.5H5.25A2.25 2.25 0 013 17.25z" />
         </svg>
       </div>
