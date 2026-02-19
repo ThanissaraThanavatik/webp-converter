@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+import JSZip from 'jszip';
 import { Header } from './components/layout/Header';
 import { DropZone } from './components/ui/DropZone';
 import { SettingsSection } from './components/ui/SettingsSection';
@@ -74,6 +75,28 @@ function App() {
     link.click();
   }, [format, getExtension]);
 
+  const handleDownloadAll = useCallback(async () => {
+    const convertedImages = getConvertedImages();
+    if (convertedImages.length === 0) return;
+
+    const zip = new JSZip();
+    const ext = getExtension(format);
+
+    convertedImages.forEach((image) => {
+      const filename = image.file.name.replace(/\.[^/.]+$/, '') + ext;
+      // Convert data URL to binary
+      const base64Data = image.convertedDataUrl.split(',')[1];
+      zip.file(filename, base64Data, { base64: true });
+    });
+
+    const content = await zip.generateAsync({ type: 'blob' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(content);
+    link.download = `converted-images${ext.replace('.', '-')}.zip`;
+    link.click();
+    URL.revokeObjectURL(link.href);
+  }, [getConvertedImages, format, getExtension]);
+
   const primaryImage = images[0];
   const sizeReduction = primaryImage && primaryImage.convertedSize
     ? calculateSizeReduction(primaryImage.file.size, primaryImage.convertedSize)
@@ -125,8 +148,7 @@ function App() {
           images={images}
           onRemove={removeImage}
           onDownload={handleDownload}
-          format={format}
-          getExtension={getExtension}
+          onDownloadAll={handleDownloadAll}
         />
 
         {/* Settings Section */}
