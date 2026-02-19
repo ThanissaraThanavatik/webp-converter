@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { isValidJPEGFile } from '../utils/fileUtils';
 
-export const useDragDrop = (onFileDrop) => {
+export const useDragDrop = (onFileDrop, acceptMultiple = false) => {
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState(null);
 
@@ -23,40 +23,75 @@ export const useDragDrop = (onFileDrop) => {
       e.stopPropagation();
       setIsDragging(false);
 
-      const files = e.dataTransfer.files;
+      const files = Array.from(e.dataTransfer.files);
       if (files.length > 0) {
-        const file = files[0];
+        if (acceptMultiple) {
+          // Filter valid files
+          const validFiles = files.filter((file) =>
+            file.type.match(/image\/(jpeg|jpg|png)/i)
+          );
 
-        if (!isValidJPEGFile(file)) {
-          setError('กรุณาเลือกไฟล์ JPEG หรือ JPG เท่านั้น');
-          return;
-        }
+          if (validFiles.length === 0) {
+            setError('กรุณาเลือกไฟล์ JPEG, JPG หรือ PNG เท่านั้น');
+            return;
+          }
 
-        setError(null);
-        if (onFileDrop) {
-          onFileDrop(file);
+          setError(null);
+          if (onFileDrop) {
+            validFiles.forEach((file) => onFileDrop(file));
+          }
+        } else {
+          const file = files[0];
+
+          if (!file.type.match(/image\/(jpeg|jpg|png)/i)) {
+            setError('กรุณาเลือกไฟล์ JPEG, JPG หรือ PNG เท่านั้น');
+            return;
+          }
+
+          setError(null);
+          if (onFileDrop) {
+            onFileDrop(file);
+          }
         }
       }
     },
-    [onFileDrop]
+    [onFileDrop, acceptMultiple]
   );
 
   const handleFileSelect = useCallback(
     (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        if (!isValidJPEGFile(file)) {
-          setError('กรุณาเลือกไฟล์ JPEG หรือ JPG เท่านั้น');
-          return;
-        }
+      const files = Array.from(e.target.files);
+      if (files.length > 0) {
+        if (acceptMultiple) {
+          const validFiles = files.filter((file) =>
+            file.type.match(/image\/(jpeg|jpg|png)/i)
+          );
 
-        setError(null);
-        if (onFileDrop) {
-          onFileDrop(file);
+          if (validFiles.length === 0) {
+            setError('กรุณาเลือกไฟล์ JPEG, JPG หรือ PNG เท่านั้น');
+            return;
+          }
+
+          setError(null);
+          if (onFileDrop) {
+            validFiles.forEach((file) => onFileDrop(file));
+          }
+        } else {
+          const file = files[0];
+
+          if (!file.type.match(/image\/(jpeg|jpg|png)/i)) {
+            setError('กรุณาเลือกไฟล์ JPEG, JPG หรือ PNG เท่านั้น');
+            return;
+          }
+
+          setError(null);
+          if (onFileDrop) {
+            onFileDrop(file);
+          }
         }
       }
     },
-    [onFileDrop]
+    [onFileDrop, acceptMultiple]
   );
 
   const clearError = useCallback(() => {
