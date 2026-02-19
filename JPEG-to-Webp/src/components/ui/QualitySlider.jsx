@@ -2,9 +2,9 @@ import { THAI_TEXT } from '../../constants/thaiText';
 
 export const QualitySlider = ({ quality, onChange }) => {
   const getQualityColor = (q) => {
-    if (q < 50) return '#FF4785';
-    if (q < 80) return '#FFD23F';
-    return '#00C4CC';
+    if (q < 50) return '#EF4444';
+    if (q < 80) return '#F59E0B';
+    return '#10B981';
   };
 
   const qualityColor = getQualityColor(quality);
@@ -12,7 +12,7 @@ export const QualitySlider = ({ quality, onChange }) => {
   return (
     <div className="flex-1">
       <div className="flex items-center justify-between mb-3">
-        <label className="text-base font-semibold" style={{ color: '#1C1C1E' }}>
+        <label className="text-base font-semibold" style={{ color: '#1F2937' }}>
           {THAI_TEXT.settings.qualityLabel}
         </label>
         <div className="flex items-center gap-2">
@@ -34,17 +34,17 @@ export const QualitySlider = ({ quality, onChange }) => {
           max="100"
           value={quality}
           onChange={(e) => onChange(parseInt(e.target.value, 10))}
-          className="canva-slider w-full"
+          className="seedream-slider w-full"
         />
 
         {/* Quality labels */}
-        <div className="flex justify-between mt-3 text-xs" style={{ color: '#8E8E93' }}>
+        <div className="flex justify-between mt-3 text-xs" style={{ color: '#9CA3AF' }}>
           <span>ไฟล์เล็ก</span>
           <span>คุณภาพสูง</span>
         </div>
       </div>
 
-      <p className="text-xs mt-3 px-4 py-2 rounded-xl bg-purple-50 text-center" style={{ color: '#636366' }}>
+      <p className="text-xs mt-3 px-4 py-2 rounded-xl bg-blue-50 text-center" style={{ color: '#4B5563' }}>
         {THAI_TEXT.settings.qualityHint}
       </p>
     </div>

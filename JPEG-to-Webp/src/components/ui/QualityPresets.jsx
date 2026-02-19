@@ -6,28 +6,28 @@ export const QualityPresets = ({ quality, onChange }) => {
       key: 'smallestSize',
       label: THAI_TEXT.presets.smallestSize,
       value: QUALITY_PRESETS.smallestSize,
-      color: 'from-orange-400 to-orange-500',
+      color: 'from-amber-400 to-orange-500',
       icon: '⚡',
     },
     {
       key: 'webOptimized',
       label: THAI_TEXT.presets.webOptimized,
       value: QUALITY_PRESETS.webOptimized,
-      color: 'from-purple-500 to-purple-600',
+      color: 'from-blue-500 to-indigo-500',
       icon: '🌐',
     },
     {
       key: 'highQuality',
       label: THAI_TEXT.presets.highQuality,
       value: QUALITY_PRESETS.highQuality,
-      color: 'from-teal-500 to-teal-600',
+      color: 'from-indigo-500 to-purple-500',
       icon: '✨',
     },
   ];
 
   return (
     <div className="mb-6">
-      <label className="block text-base font-semibold mb-3" style={{ color: '#1C1C1E' }}>
+      <label className="block text-base font-semibold mb-3" style={{ color: '#1F2937' }}>
         {THAI_TEXT.presets.title}
       </label>
       <div className="grid grid-cols-3 gap-3">

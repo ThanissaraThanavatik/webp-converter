@@ -2,77 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Canva-inspired Design System */
+/* Seedream Design System */
 @layer base {
   :root {
-    /* Canva Color Palette */
-    --canva-purple: #7D2AE8;
-    --canva-purple-light: #964DFF;
-    --canva-purple-dark: #5B1CB0;
-    --canva-teal: #00C4CC;
-    --canva-pink: #FF4785;
-    --canva-coral: #FF6B35;
-    --canva-yellow: #FFD23F;
-    --canva-blue: #0969DA;
+    /* Seedream Color Palette - Blue to Purple Gradient */
+    --seedream-blue: #2563EB;
+    --seedream-blue-light: #3B82F6;
+    --seedream-purple: #7C3AED;
+    --seedream-purple-light: #8B5CF6;
 
     /* Neutrals */
-    --canva-gray-50: #F5F5F7;
-    --canva-gray-100: #E8E8ED;
-    --canva-gray-200: #D1D1D6;
-    --canva-gray-300: #AEAEB2;
-    --canva-gray-500: #8E8E93;
-    --canva-gray-700: #636366;
-    --canva-gray-900: #1C1C1E;
+    --seedream-gray-50: #F9FAFB;
+    --seedream-gray-100: #F3F4F6;
+    --seedream-gray-200: #E5E7EB;
+    --seedream-gray-300: #D1D5DB;
+    --seedream-gray-400: #9CA3AF;
+    --seedream-gray-500: #6B7280;
+    --seedream-gray-600: #4B5563;
+    --seedream-gray-700: #374151;
+    --seedream-gray-800: #1F2937;
+    --seedream-gray-900: #111827;
 
     /* Semantic Colors */
-    --canva-bg-primary: #FFFFFF;
-    --canva-bg-secondary: #F5F5F7;
-    --canva-bg-tertiary: #E8E8ED;
+    --seedream-bg-primary: #FFFFFF;
+    --seedream-bg-secondary: #F9FAFB;
+    --seedream-bg-tertiary: #F3F4F6;
+
+    /* Text Colors */
+    --seedream-text-primary: #1F2937;
+    --seedream-text-secondary: #4B5563;
+    --seedream-text-muted: #9CA3AF;
+
+    /* Borders */
+    --seedream-border: #E5E7EB;
+    --seedream-border-light: #F3F4F6;
 
     /* Shadows */
-    --canva-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-    --canva-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --canva-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
-    --canva-shadow-xl: 0 16px 48px rgba(125, 42, 232, 0.15);
+    --seedream-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --seedream-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --seedream-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --seedream-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --seedream-shadow-blue: 0 4px 12px rgba(37, 99, 235, 0.15);
+    --seedream-shadow-blue-hover: 0 6px 16px rgba(37, 99, 235, 0.25);
 
     /* Border Radius */
-    --canva-radius-sm: 8px;
-    --canva-radius-md: 12px;
-    --canva-radius-lg: 16px;
-    --canva-radius-xl: 24px;
-    --canva-radius-full: 9999px;
+    --seedream-radius-sm: 8px;
+    --seedream-radius-md: 12px;
+    --seedream-radius-lg: 16px;
+    --seedream-radius-xl: 20px;
+    --seedream-radius-full: 9999px;
 
     /* Transitions */
-    --canva-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    --canva-transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    --canva-transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --seedream-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --seedream-transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    --seedream-transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   * {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
   }
 
   body {
-    background: linear-gradient(135deg, #F5F5F7 0%, #E8E8ED 50%, #F0E6F6 100%);
+    background: #FFFFFF;
     min-height: 100vh;
+    color: var(--seedream-text-primary);
   }
 
-  /* Animated gradient background */
-  .canva-gradient-bg {
-    background: linear-gradient(-45deg,
-      #7D2AE8,
-      #00C4CC,
-      #FF4785,
-      #964DFF
-    );
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+  /* Seedream gradient background - blue to purple */
+  .seedream-gradient-bg {
+    background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
   }
 
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  .seedream-gradient-text {
+    background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   /* Floating animation */
@@ -109,100 +114,124 @@
 }
 
 @layer components {
-  /* Custom slider with Canva style */
-  .canva-slider {
+  /* Seedream-style slider with blue-purple gradient */
+  .seedream-slider {
     -webkit-appearance: none;
     appearance: none;
-    height: 8px;
-    border-radius: var(--canva-radius-full);
-    background: linear-gradient(to right, var(--canva-purple), var(--canva-teal));
+    height: 6px;
+    border-radius: var(--seedream-radius-full);
+    background: linear-gradient(to right, #2563EB, #7C3AED);
     outline: none;
+    cursor: pointer;
   }
 
-  .canva-slider::-webkit-slider-thumb {
+  .seedream-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 24px;
-    height: 24px;
-    border-radius: var(--canva-radius-full);
+    width: 20px;
+    height: 20px;
+    border-radius: var(--seedream-radius-full);
     background: white;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    border: 3px solid var(--canva-purple);
-    transition: all var(--canva-transition-base);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    border: 2px solid #2563EB;
+    transition: all var(--seedream-transition-base);
   }
 
-  .canva-slider::-webkit-slider-thumb:hover {
+  .seedream-slider::-webkit-slider-thumb:hover {
     transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(125, 42, 232, 0.3);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    border-color: #7C3AED;
   }
 
-  .canva-slider::-moz-range-thumb {
-    width: 24px;
-    height: 24px;
-    border-radius: var(--canva-radius-full);
+  .seedream-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--seedream-radius-full);
     background: white;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    border: 3px solid var(--canva-purple);
-    transition: all var(--canva-transition-base);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    border: 2px solid #2563EB;
+    transition: all var(--seedream-transition-base);
   }
 
-  /* Canva-style button */
-  .canva-btn-primary {
-    background: linear-gradient(135deg, var(--canva-purple) 0%, var(--canva-purple-light) 100%);
+  .seedream-slider::-moz-range-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    border-color: #7C3AED;
+  }
+
+  /* Seedream primary button - blue-purple gradient */
+  .seedream-btn-primary {
+    background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
     color: white;
-    border-radius: var(--canva-radius-lg);
-    padding: 14px 28px;
+    border-radius: 12px;
+    padding: 12px 24px;
     font-weight: 600;
-    font-size: 15px;
-    transition: all var(--canva-transition-base);
-    box-shadow: 0 4px 12px rgba(125, 42, 232, 0.3);
+    font-size: 14px;
+    transition: all var(--seedream-transition-base);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
     border: none;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
   }
 
-  .canva-btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(125, 42, 232, 0.4);
+  .seedream-btn-primary:hover {
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+    transform: translateY(-1px);
   }
 
-  .canva-btn-primary:active {
+  .seedream-btn-primary:active {
     transform: translateY(0);
   }
 
-  .canva-btn-secondary {
+  .seedream-btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Seedream secondary button - clean white style */
+  .seedream-btn-secondary {
     background: white;
-    color: var(--canva-purple);
-    border-radius: var(--canva-radius-lg);
-    padding: 14px 28px;
+    color: #2563EB;
+    border-radius: 12px;
+    padding: 12px 24px;
     font-weight: 600;
-    font-size: 15px;
-    transition: all var(--canva-transition-base);
-    box-shadow: var(--canva-shadow-md);
-    border: 2px solid transparent;
+    font-size: 14px;
+    transition: all var(--seedream-transition-base);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E5E7EB;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
   }
 
-  .canva-btn-secondary:hover {
-    border-color: var(--canva-purple);
-    box-shadow: var(--canva-shadow-lg);
+  .seedream-btn-secondary:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: #2563EB;
   }
 
-  /* Canva-style card */
-  .canva-card {
+  /* Seedream card - clean white with thin border */
+  .seedream-card {
     background: white;
-    border-radius: var(--canva-radius-xl);
-    box-shadow: var(--canva-shadow-md);
-    transition: all var(--canva-transition-base);
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E5E7EB;
+    transition: all var(--seedream-transition-base);
   }
 
-  .canva-card:hover {
-    box-shadow: var(--canva-shadow-lg);
+  .seedream-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   /* Glassmorphism effect */
-  .canva-glass {
+  .seedream-glass {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -214,7 +243,7 @@
     to { transform: rotate(360deg); }
   }
 
-  .canva-spinner {
+  .seedream-spinner {
     animation: spin 1s linear infinite;
   }
 
@@ -246,7 +275,7 @@
 
   /* Scale effect on hover */
   .hover-scale {
-    transition: transform var(--canva-transition-base);
+    transition: transform var(--seedream-transition-base);
   }
 
   .hover-scale:hover {
@@ -273,4 +302,13 @@
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
   }
+
+  /* Legacy class aliases for backward compatibility */
+  .canva-slider { @extend .seedream-slider; }
+  .canva-btn-primary { @extend .seedream-btn-primary; }
+  .canva-btn-secondary { @extend .seedream-btn-secondary; }
+  .canva-card { @extend .seedream-card; }
+  .canva-glass { @extend .seedream-glass; }
+  .canva-spinner { @extend .seedream-spinner; }
+  .canva-gradient-bg { @extend .seedream-gradient-bg; }
 }

@@ -7,12 +7,12 @@ export const FileQueue = ({ images, onRemove, onDownload, onDownloadAll }) => {
   return (
     <div className="mb-8 animate-fade-in animation-delay-300">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold" style={{ color: '#1C1C1E' }}>
+        <h3 className="text-lg font-semibold" style={{ color: '#1F2937' }}>
           {THAI_TEXT.batch.title} ({images.length})
         </h3>
         <div className="flex gap-2">
           {images.filter((img) => img.convertedDataUrl).length > 0 && (
-            <button onClick={onDownloadAll} className="canva-btn-secondary inline-flex items-center gap-2 px-4 py-2 text-sm">
+            <button onClick={onDownloadAll} className="seedream-btn-secondary inline-flex items-center gap-2 px-4 py-2 text-sm">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
@@ -32,7 +32,7 @@ export const FileQueue = ({ images, onRemove, onDownload, onDownloadAll }) => {
         {images.map((image, index) => (
           <div
             key={image.id}
-            className="canva-card p-4 flex items-center gap-4 animate-fade-in"
+            className="seedream-card p-4 flex items-center gap-4 animate-fade-in"
             style={{ animationDelay: `${300 + index * 50}ms` }}
           >
             {/* Thumbnail */}
@@ -46,15 +46,15 @@ export const FileQueue = ({ images, onRemove, onDownload, onDownloadAll }) => {
 
             {/* Info */}
             <div className="flex-1 min-w-0">
-              <p className="font-medium text-sm truncate" style={{ color: '#1C1C1E' }}>
+              <p className="font-medium text-sm truncate" style={{ color: '#1F2937' }}>
                 {image.file.name}
               </p>
-              <div className="flex items-center gap-4 mt-1 text-xs" style={{ color: '#8E8E93' }}>
+              <div className="flex items-center gap-4 mt-1 text-xs" style={{ color: '#9CA3AF' }}>
                 <span>{formatFileSize(image.file.size)}</span>
                 {image.convertedDataUrl && (
                   <>
                     <span>→</span>
-                    <span className="text-purple-600 font-medium">
+                    <span className="text-blue-600 font-medium">
                       {formatFileSize(image.convertedSize)}
                     </span>
                     <span className={`text-xs ${
@@ -70,7 +70,7 @@ export const FileQueue = ({ images, onRemove, onDownload, onDownloadAll }) => {
             {/* Status */}
             <div className="flex items-center gap-2">
               {image.isConverting && (
-                <div className="px-3 py-1 rounded-full bg-purple-100 text-purple-600 text-xs font-medium animate-pulse">
+                <div className="px-3 py-1 rounded-full bg-blue-100 text-blue-600 text-xs font-medium animate-pulse">
                   {THAI_TEXT.settings.converting}
                 </div>
               )}

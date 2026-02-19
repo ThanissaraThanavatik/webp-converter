@@ -122,11 +122,10 @@ function App() {
 
   return (
     <div className="min-h-screen">
-      {/* Decorative background elements */}
+      {/* Decorative background elements - Seedream style */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-purple-200/30 blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-teal-200/30 blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-pink-200/20 blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-blue-100/40 to-purple-100/40 blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-gradient-to-tr from-purple-100/30 to-blue-100/30 blur-3xl" />
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-12 max-w-6xl">
@@ -174,13 +173,13 @@ function App() {
                 onClick={handleConvert}
                 disabled={isConverting || images.length === 0}
                 className={`
-                  canva-btn-primary inline-flex items-center gap-3 px-8 py-4 text-base
+                  seedream-btn-primary inline-flex items-center gap-3 px-8 py-4 text-base
                   ${isConverting || images.length === 0 ? 'opacity-50 cursor-not-allowed' : ''}
                 `}
               >
                 {isConverting ? (
                   <>
-                    <svg className="w-5 h-5 canva-spinner" fill="none" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 seedream-spinner" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                     </svg>

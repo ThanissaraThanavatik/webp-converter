@@ -55,7 +55,7 @@ export const ResizeOptions = ({ options, onChange }) => {
 
   return (
     <div className="flex-1">
-      <label className="block text-base font-semibold mb-3" style={{ color: '#1C1C1E' }}>
+      <label className="block text-base font-semibold mb-3" style={{ color: '#1F2937' }}>
         {THAI_TEXT.resize.title}
       </label>
 
@@ -77,7 +77,7 @@ export const ResizeOptions = ({ options, onChange }) => {
           className={`
             flex-1 px-4 py-2 rounded-xl font-medium text-sm transition-all duration-200
             ${mode === 'custom'
-              ? 'bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-lg'
+              ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
               : 'bg-white text-gray-600 shadow-md hover:shadow-lg'
             }
           `}
@@ -89,7 +89,7 @@ export const ResizeOptions = ({ options, onChange }) => {
       {mode === 'custom' && (
         <div className="flex gap-3 items-end">
           <div className="flex-1">
-            <label className="block text-xs mb-1" style={{ color: '#8E8E93' }}>
+            <label className="block text-xs mb-1" style={{ color: '#9CA3AF' }}>
               {THAI_TEXT.resize.width}
             </label>
             <input
@@ -97,12 +97,12 @@ export const ResizeOptions = ({ options, onChange }) => {
               value={width}
               onChange={(e) => handleWidthChange(e.target.value)}
               placeholder="1920"
-              className="w-full px-4 py-2 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-colors"
+              className="w-full px-4 py-2 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors"
             />
           </div>
 
           <div className="flex-1">
-            <label className="block text-xs mb-1" style={{ color: '#8E8E93' }}>
+            <label className="block text-xs mb-1" style={{ color: '#9CA3AF' }}>
               {THAI_TEXT.resize.height}
             </label>
             <input
@@ -110,7 +110,7 @@ export const ResizeOptions = ({ options, onChange }) => {
               value={height}
               onChange={(e) => handleHeightChange(e.target.value)}
               placeholder="1080"
-              className="w-full px-4 py-2 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-colors"
+              className="w-full px-4 py-2 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors"
             />
           </div>
 
@@ -119,7 +119,7 @@ export const ResizeOptions = ({ options, onChange }) => {
             className={`
               px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200
               ${lockRatio
-                ? 'bg-purple-100 text-purple-600'
+                ? 'bg-blue-100 text-blue-600'
                 : 'bg-gray-100 text-gray-500'
               }
             `}

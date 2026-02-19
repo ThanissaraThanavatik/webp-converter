@@ -24,8 +24,8 @@ export const DropZone = ({
         className={`
           relative overflow-hidden rounded-3xl p-12 text-center transition-all duration-300 cursor-pointer
           ${isDragging
-            ? 'border-4 border-purple-500 bg-purple-50 scale-[1.02]'
-            : 'border-2 border-dashed border-gray-300 bg-white hover:border-purple-400 hover:shadow-xl'
+            ? 'border-4 border-blue-500 bg-blue-50 scale-[1.02]'
+            : 'border-2 border-dashed border-gray-300 bg-white hover:border-blue-400 hover:shadow-xl'
           }
           ${isHovered && !isDragging ? 'scale-[1.01]' : ''}
         `}
@@ -39,7 +39,7 @@ export const DropZone = ({
         {/* Animated background gradient */}
         <div className="absolute inset-0 opacity-0 transition-opacity duration-300"
              style={{
-               background: 'linear-gradient(135deg, rgba(125, 42, 232, 0.05) 0%, rgba(0, 196, 204, 0.05) 100%)',
+               background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%)',
                opacity: isDragging ? 1 : isHovered ? 0.5 : 0
              }}
         />
@@ -50,11 +50,11 @@ export const DropZone = ({
           <div className={`
             inline-flex items-center justify-center w-24 h-24 mb-6 rounded-3xl transition-all duration-300
             ${isDragging
-              ? 'canva-gradient-bg scale-110'
-              : 'bg-gradient-to-br from-purple-100 to-teal-100'
+              ? 'seedream-gradient-bg scale-110'
+              : 'bg-gradient-to-br from-blue-100 to-purple-100'
             }
           `}>
-            <svg className={`w-12 h-12 transition-colors duration-300 ${isDragging ? 'text-white' : 'text-purple-600'}`}
+            <svg className={`w-12 h-12 transition-colors duration-300 ${isDragging ? 'text-white' : 'text-blue-600'}`}
                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"
                     d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -63,7 +63,7 @@ export const DropZone = ({
 
           {/* Main text */}
           <p className="text-2xl font-semibold mb-3 transition-colors duration-300"
-             style={{ color: isDragging ? '#7D2AE8' : '#1C1C1E' }}>
+             style={{ color: isDragging ? '#2563EB' : '#1F2937' }}>
             {THAI_TEXT.dropZone.title}
           </p>
 
@@ -72,7 +72,7 @@ export const DropZone = ({
 
           {/* Action buttons */}
           <div className="flex items-center justify-center gap-4">
-            <button className="canva-btn-primary inline-flex items-center gap-2">
+            <button className="seedream-btn-primary inline-flex items-center gap-2">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
               </svg>
